@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Ground
+  - Lader
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 3832903653
+    locked: 0
+  - name: Lader
+    uniqueID: 2619467275
     locked: 0
   - name: Player
     uniqueID: 1832443957
