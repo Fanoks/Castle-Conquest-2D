@@ -3,18 +3,24 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float speed = 5.0f;
+    [SerializeField] float speed = 6f;
+    [SerializeField] float jump = 7f;
     private Rigidbody2D rg;
+    private Collider2D col;
+    private PolygonCollider2D feets;
     private Animator anim;
 
     void Start()
     {
         rg = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
+        feets = GetComponent<PolygonCollider2D>();
         anim = GetComponent<Animator>();
     }
 
     void Update()
     {
+        Jump();
         Run();
     }
 
@@ -30,6 +36,15 @@ public class Player : MonoBehaviour
         anim.SetBool("Running", runningHorizontaly);
 
         FlipSprite(runningHorizontaly);
+    }
+
+    private void Jump()
+    {
+        LayerMask mask = LayerMask.GetMask("Ground");
+        if (Input.GetKeyUp(KeyCode.Space) && feets.IsTouchingLayers(mask))
+        {
+            rg.linearVelocityY = jump;
+        }
     }
 
     private void FlipSprite(bool runningHorizontaly)
